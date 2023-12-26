@@ -71,7 +71,7 @@ export class HttpUtils {
           extraData = Object.fromEntries(parameter)
           break;
         }
-        case RequestMethod.GET, RequestMethod.DELETE: {
+        case RequestMethod.GET: {
           const urlParams = Object.keys(parameter).map(key => `${key}=${parameter[key]}`).join('&')
           if (url.includes("?")) {
             url = `${url}${urlParams}`

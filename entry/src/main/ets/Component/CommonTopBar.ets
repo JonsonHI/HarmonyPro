@@ -30,7 +30,7 @@ export struct CommonTopBar {
       //2、设置系统状态栏颜色---该API废弃了，统一返回801，目前没找到好的方法设置状态栏文字的颜色，放弃了。。。。。。
       const systemBarProperties: window.SystemBarProperties = {
         //顶部状态栏颜色
-        statusBarColor: "#ffffff",
+        statusBarColor: "red",
         statusBarContentColor: "#ffffff",
         isStatusBarLightIcon: true
       }
