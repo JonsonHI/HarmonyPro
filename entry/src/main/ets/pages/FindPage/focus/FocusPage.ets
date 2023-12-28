@@ -1,5 +1,5 @@
 import findModel from '../../../ViewModel/FindModel'
-
+import { ListView, RefreshController } from '@app/refresh'
 type FocusData = {
   "title": string,
   "picUrl": string,
@@ -18,6 +18,7 @@ type FocusData = {
 @Component
 export struct FocusPage {
   @State focusList: Array<FocusData> = []
+  @State controller : RefreshController = new RefreshController()
 
   aboutToAppear() {
     let mpSet = new Map<string, Object>()
@@ -40,37 +41,56 @@ export struct FocusPage {
     })
   }
 
+  @Builder
+  itemLayout(item,index){
+    Column() {
+      Stack({ alignContent: Alignment.TopStart }) {
+        Image(item.picUrl).width('100%').height('180vp').border({ radius: '10vp' })
+        Text(item.type).height('20vp')
+          .backgroundColor('red')
+          .border({ radius: { topLeft: '10vp', bottomRight: '10vp' } })
+          .padding('5vp')
+        Column(){
+          Text(item.title)
+          Row(){
+            Text(item.actors).fontWeight(FontWeight.Bold).textCase(TextCase.UpperCase)
+            Text(item.releaseDateStr)
+          }
+          .justifyContent(FlexAlign.SpaceBetween)
+        }
+        .height('180vp')
+        .justifyContent(FlexAlign.End)
+      }
+
+    }
+    .margin({top:'10vp'})
+  }
+
   build() {
     Column() {
-      List() {
-        ForEach(this.focusList, (item,index) => {
-          ListItem() {
-            Column() {
-              Stack({ alignContent: Alignment.TopStart }) {
-                Image(item.picUrl).width('100%').height('180vp').border({ radius: '10vp' })
-                Text(item.type).height('20vp')
-                  .backgroundColor('red')
-                  .border({ radius: { topLeft: '10vp', bottomRight: '10vp' } })
-                .padding('5vp')
-                Column(){
-                  Text(item.title)
-                  Row(){
-                    Text(item.actors).fontWeight(FontWeight.Bold).textCase(TextCase.UpperCase)
-                    Text(item.releaseDateStr)
-                  }
-                  .justifyContent(FlexAlign.SpaceBetween)
-                }
-                .height('180vp')
-                .justifyContent(FlexAlign.End)
-              }
+      ListView({
+        items: this.focusList, //数据源 数组
+        itemLayout: (item, index) => this.itemLayout(item, index),
+        controller: this.controller, //控制器，负责关闭下拉和上拉
+        onRefresh: () => {
+          //下拉刷新
+          this.controller.finishRefresh()
+        },
+        onLoadMore: () => {
+          //上拉加载
+          this.controller.finishLoadMore()
+        }
+      })
 
-            }
-            .margin({top:'10vp'})
-          }.swipeAction({ end: this.itemEnd.bind(this, index) })
-        })
-
-
-      }
+      // List() {
+      //   ForEach(this.focusList, (item,index) => {
+      //     ListItem() {
+      //
+      //     }.swipeAction({ end: this.itemEnd.bind(this, index) })
+      //   })
+      //
+      //
+      // }
     }
     .width('100%')
   }

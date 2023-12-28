@@ -5,6 +5,8 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    "@app/refresh": "file:../entry/lib/refresh-1.0.0.har"
+  }
 }
 
