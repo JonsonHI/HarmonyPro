@@ -1,5 +1,5 @@
 import findModel from '../../../ViewModel/FindModel'
-import { ListView, RefreshController } from '@app/refresh'
+import { ListView, RefreshController,RefreshLayout } from '@app/refresh'
 type FocusData = {
   "title": string,
   "picUrl": string,
@@ -64,33 +64,38 @@ export struct FocusPage {
 
     }
     .margin({top:'10vp'})
+
   }
 
   build() {
     Column() {
-      ListView({
-        items: this.focusList, //数据源 数组
-        itemLayout: (item, index) => this.itemLayout(item, index),
+      RefreshLayout({
         controller: this.controller, //控制器，负责关闭下拉和上拉
         onRefresh: () => {
           //下拉刷新
-          this.controller.finishRefresh()
-        },
-        onLoadMore: () => {
+          this.controller.finishRefresh() //关闭下拉刷新
+        }, onLoadMore: () => {
           //上拉加载
-          this.controller.finishLoadMore()
-        }
-      })
+          this.controller.finishLoadMore() //关闭上拉加载
+        } }) {
+        //可以是任何组件 List/Grid/Column/Row/Text/……
 
-      // List() {
-      //   ForEach(this.focusList, (item,index) => {
-      //     ListItem() {
-      //
-      //     }.swipeAction({ end: this.itemEnd.bind(this, index) })
-      //   })
-      //
-      //
-      // }
+        List() {
+          ForEach(this.focusList, (item, index) => {
+            ListItem() {
+              this.itemLayout(item,index)
+            }.swipeAction({ end: this.itemEnd.bind(this, index) })
+          }, item => item)
+        }
+        .width("100%")
+        .height("100%")
+        .onScrollIndex((start: number, end: number) => {
+          //必须添加，用于控制下拉和上拉何时展示
+          this.controller.markLocation(start, end, this.focusList.length - 1)
+        })
+        .edgeEffect(EdgeEffect.None)
+      }
+
     }
     .width('100%')
   }
