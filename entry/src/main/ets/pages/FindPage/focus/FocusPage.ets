@@ -29,6 +29,16 @@ export struct FocusPage {
     })
   }
 
+  async addItem(callBack:Function){
+    let mpSet = new Map<string, Object>()
+    mpSet['key'] = 'r8Wr51n8RpNtdi77yYAgc2uWoB'
+    await findModel.getFocusList(mpSet, (data) => {
+      console.log(data)
+      this.focusList = [...this.focusList,...data.data]
+      callBack()
+    })
+  }
+
   @Builder itemEnd(index: number) {
     // 侧滑后尾端出现的组件
     Button({ type: ButtonType.Circle }) {
@@ -73,7 +83,9 @@ export struct FocusPage {
         controller: this.controller, //控制器，负责关闭下拉和上拉
         onRefresh: () => {
           //下拉刷新
-          this.controller.finishRefresh() //关闭下拉刷新
+          this.addItem(()=>{
+            this.controller.finishRefresh() //关闭下拉刷新
+          })
         }, onLoadMore: () => {
           //上拉加载
           this.controller.finishLoadMore() //关闭上拉加载

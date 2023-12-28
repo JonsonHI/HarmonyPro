@@ -4,6 +4,7 @@ import { HotPage } from './HotPage/HotPage'
 import { MinePage } from './MinePage/MinePage'
 import { TabItem } from '../Model/TabItem'
 import MainPageModel from '../ViewModel/MainPageModel'
+import display from '@ohos.display'
 
 @Entry
 @Component
@@ -13,6 +14,18 @@ struct MainPage {
 
   onPageShow() {
     console.log('进入页面', '~~~~~~~~~')
+    let displayClass = null;
+    //获取屏幕宽高
+    display.getAllDisplays((err, data) => {
+      displayClass = data;
+      if (err.code) {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+        return;
+      }
+      globalThis.SCREEN_WIDTH = displayClass[0].width
+      globalThis.SCREEN_HEIGHT = displayClass[0].height
+      console.log('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+    });
   }
 
   onPageHide() {

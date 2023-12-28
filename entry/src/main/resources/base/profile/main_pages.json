@@ -5,6 +5,7 @@
     "pages/HomePage/HomePage",
     "pages/FindPage/FindPage",
     "pages/HotPage/HotPage",
-    "pages/MinePage/MinePage"
+    "pages/MinePage/MinePage",
+    "pages/FindPage/topic/CommitPage/CommitPage"
   ]
 }
