@@ -12,7 +12,7 @@ struct CommitPage {
     cancel:()=>this.onCancel(),
     confirm:()=>this.onConfirm(),
     dialogOpen:()=>this.dialogOpen()
-  }),alignment:DialogAlignment.BottomEnd
+  }),alignment:DialogAlignment.Bottom
   })
   twoDialogController: CustomDialogController = new CustomDialogController({
     builder:CommonDialog({
@@ -41,14 +41,10 @@ struct CommitPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: '事例页', backButton: true, alpha: 1 })
-      Text(this.message)
+      CommonTopBar({ title: '事例页', backButton: false, alpha: 1 })
+      Text('点击Item多级弹窗')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
-        .onClick(()=>{
-          this.isLunar = true
-        })
-
       Row(){
         Flex({direction:FlexDirection.Row,wrap:FlexWrap.Wrap}){
           ForEach(this.buttonArray,(item,index)=>{

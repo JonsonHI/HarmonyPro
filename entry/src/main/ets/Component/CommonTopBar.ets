@@ -3,13 +3,16 @@
  */
 import router from '@ohos.router'
 import window from '@ohos.window';
+
 @Component
 export struct CommonTopBar {
   @Prop title: string
   @Prop alpha: number
   @State statusBarHeight: number = 0
+  @BuilderParam rightButton: ()=>void
   private titleAlignment: TextAlign = TextAlign.Center
   private backButton: boolean = true
+  private rtButton: boolean = false
   private onBackClick?: () => void
 
   aboutToAppear() {
@@ -46,30 +49,67 @@ export struct CommonTopBar {
   }
 
   build() {
-    Column() {
-      Blank()
-        .backgroundColor('red')
-        .opacity(this.alpha)
-      Stack({ alignContent: Alignment.Start }) {
-        Stack()
-          .height('50vp')
-          .width("100%")
-          .opacity(this.alpha)
-          .backgroundColor('red')
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-          Text(this.title)
-            .flexGrow(1)
-            .textAlign(this.titleAlignment)
-            .fontColor('#fff')
-            .fontSize('16vp')
-            .align(Alignment.Center)
-            .maxLines(1)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-        }
-        .height('50vp')
-        .margin({ left: '50vp', right: '50vp' })
-        .alignSelf(ItemAlign.Center)
-
+    // Column() {
+    //   Blank()
+    //     .backgroundColor('red')
+    //     .opacity(this.alpha)
+    //   Stack({ alignContent: Alignment.Start }) {
+    //     Stack()
+    //       .height('50vp')
+    //       .width("100%")
+    //       .opacity(this.alpha)
+    //       .backgroundColor('red')
+    //     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+    //       Text(this.title)
+    //         .flexGrow(1)
+    //         .textAlign(this.titleAlignment)
+    //         .fontColor('#fff')
+    //         .fontSize('16vp')
+    //         .align(Alignment.Center)
+    //         .maxLines(1)
+    //         .textOverflow({ overflow: TextOverflow.Ellipsis })
+    //     }
+    //     .height('50vp')
+    //     .margin({ left: '50vp', right: '50vp' })
+    //     .alignSelf(ItemAlign.End)
+    //     .backgroundColor("blue")
+    //
+    //     if (this.backButton) {
+    //       Stack() {
+    //         Image($r('app.media.ic_action_back'))
+    //           .height('16vp')
+    //           .width('16vp')
+    //           .align(Alignment.Center)
+    //           .onClick(() => {
+    //             this.onBackClick?.()
+    //             router.back();
+    //           })
+    //       }
+    //       .height('50vp')
+    //       .width('50vp')
+    //     } else {
+    //       Text('返回')
+    //     }
+    //     Stack(){
+    //       Image($r('app.media.ic_action_back'))
+    //         .height('16vp')
+    //         .width('16vp')
+    //         .backgroundColor('blue')
+    //         .align(Alignment.Center)
+    //         .onClick(() => {
+    //           this.onBackClick?.()
+    //           router.back();
+    //         })
+    //     }
+    //     .alignContent(Alignment.End)
+    //
+    //
+    //   }
+    //   .height('50vp')
+    //   .width("100%")
+    // }.height(this.statusBarHeight)
+    Row() {
+      Row() {
         if (this.backButton) {
           Stack() {
             Image($r('app.media.ic_action_back'))
@@ -86,8 +126,33 @@ export struct CommonTopBar {
         }
       }
       .height('50vp')
-      .width("100%")
-    }.height(this.statusBarHeight)
-
+      .width('20%')
+      Row() {
+        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+          Text(this.title)
+            .flexGrow(1)
+            .textAlign(this.titleAlignment)
+            .fontColor('#fff')
+            .fontSize('16vp')
+            .align(Alignment.Center)
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+        .height('50vp')
+        .alignSelf(ItemAlign.End)
+      }
+      .height('50vp')
+      .width('60%')
+     if(this.rtButton){
+       Row() {
+         this.rightButton()
+       }
+       .height('50vp')
+       .width('20%')
+     }
+    }
+    .backgroundColor('red')
+    .width('100%')
+    .height('50vp')
   }
 }

@@ -33,9 +33,19 @@ export  struct HomePage {
     })
   }
 
+  @Builder
+  rightButton(){
+    Row(){
+      Button('数字').margin(2)
+      Button('点击').margin(2)
+    }
+    .height('50vp')
+  }
+
+
   build() {
     Column() {
-      CommonTopBar({title:'首页',backButton:false,alpha:1}).align(Alignment.TopStart)
+      CommonTopBar({title:'首页',backButton:false,alpha:1,rightButton:this.rightButton,rtButton:true}).align(Alignment.TopStart)
       Swiper(this.swiper){
         ForEach(this.list,(item,index)=>{
           Image(item.image).width('100%').height('180vp').objectFit(ImageFit.Fill)
