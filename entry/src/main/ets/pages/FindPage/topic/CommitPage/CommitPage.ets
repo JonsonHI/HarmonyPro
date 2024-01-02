@@ -41,7 +41,7 @@ struct CommitPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: '事例页', backButton: false, alpha: 1 })
+      CommonTopBar({ title: '事例页', backButton: true, alpha: 1,rightButton:null })
       Text('点击Item多级弹窗')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
