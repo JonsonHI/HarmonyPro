@@ -4,8 +4,6 @@ export struct CommonDialog {
   cancel: () => void
   confirm: () => void
   controller: CustomDialogController
-  children:Resource
-
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.Center }) {

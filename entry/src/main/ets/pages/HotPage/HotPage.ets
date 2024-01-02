@@ -1,14 +1,24 @@
+import Network from '@system.network'
+import { CommonStateView } from '../../Component/CommonStateView'
+import ViewStateConstant from '../../Constant/ViewStateConstant'
+import findModel from '../../ViewModel/FindModel'
 @Entry
 @Component
 export  struct HotPage {
-  @State message: string = '热门'
+  @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
+
+  aboutToAppear(){
+    findModel.getCategoryList((data)=>{
+      this.viewState = ViewStateConstant.VIEW_STATE_SUCCESS
+    })
+  }
 
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+        CommonStateView({viewState:this.viewState}){
+          Text('zhuyemian')
+        }
       }
       .width('100%')
     }

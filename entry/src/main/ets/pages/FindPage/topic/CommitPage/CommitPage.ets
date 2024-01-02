@@ -1,13 +1,14 @@
 import router from '@ohos.router'
 import { CommonTopBar } from '../../../../Component/CommonTopBar'
 import {CommonDialog} from '../../../../Component/CommonDialog'
+import { showToast } from '../../../../utils/ToatUtils'
 @Entry
 @Component
 struct CommitPage {
   @State message: string = 'Hello World'
   @State isLunar: boolean = false
   private  selectedDate: Date = new Date('2023-12-11')
-  private buttonArray: Array<object> = [{name:'datapick'},{name:'弹窗(22222222222222)'},{name:'alert(11111111)'},{name:'alert1'},{name:'alert2'},{name:'alert3'},{name:'alert4'}]
+  private buttonArray: Array<object> = [{name:'datapick'},{name:'弹窗'},{name:'toast'},{name:'alert1'},{name:'alert2'},{name:'alert3'},{name:'alert4'}]
   dialogController: CustomDialogController = new CustomDialogController({builder:CommonDialog({
     cancel:()=>this.onCancel(),
     confirm:()=>this.onConfirm(),
@@ -53,7 +54,12 @@ struct CommitPage {
               .margin('10vp')
               .padding('5vp')
               .onClick((item)=>{
+                if (index === 2) {
+                  showToast('toast',null,200)
+                }else{
                   this.dialogController.open()
+                }
+
               })
           })
         }
