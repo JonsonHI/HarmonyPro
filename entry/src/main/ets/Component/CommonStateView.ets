@@ -25,6 +25,9 @@ export struct  CommonStateView{
           .width('50vp')
           .height('50vp')
       }
+      .height('100%')
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
     }else{
       this.netView()
     }
