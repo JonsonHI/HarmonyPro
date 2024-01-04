@@ -1,6 +1,5 @@
 @Component
 export struct GrideListView{
-
   @Link imageArray:Array<object>
 
   build(){
@@ -18,7 +17,6 @@ export struct GrideListView{
             .margin('10vp')
           }
         })
-
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .columnsGap(10)

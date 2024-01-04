@@ -110,6 +110,8 @@ export struct HotPage {
           // .height('100%')
         }
         .backgroundColor('#f5f5f5f5')
+        .scrollBar(BarState.Off)
+
       }
     }
     .width('100%')
