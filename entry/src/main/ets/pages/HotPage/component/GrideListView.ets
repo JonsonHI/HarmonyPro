@@ -1,3 +1,6 @@
+import promptAction from '@ohos.promptAction'
+import router from '@ohos.router'
+import { showToast } from '../../../utils/ToatUtils'
 @Component
 export struct GrideListView{
   @Link imageArray:Array<object>
@@ -15,7 +18,15 @@ export struct GrideListView{
                 .margin({top:'5vp'})
             }
             .margin('10vp')
+
           }
+          .onClick(()=>{
+            if(index === 0){
+              router.pushUrl({
+                url:'pages/HotPage/RowPage'
+              })
+            }
+          })
         })
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')

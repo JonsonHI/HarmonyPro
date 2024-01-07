@@ -10,10 +10,10 @@ import { RecommendDate } from './component/RecommendDate'
 export struct HotPage {
   @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
   @State imageArray: Array<object> = [
-    { "name": $r('app.media.phone'), "text": "手机" },
-    { "name": $r('app.media.commper'), "text": "电脑" },
-    { "name": $r('app.media.watch'), "text": "手表" },
-    { "name": $r('app.media.plan'), "text": "计划" },
+    { "name": $r('app.media.phone'), "text": "Row" },
+    { "name": $r('app.media.commper'), "text": "Colum" },
+    { "name": $r('app.media.watch'), "text": "Stack" },
+    { "name": $r('app.media.plan'), "text": "Flex" },
     { "name": $r('app.media.reacter'), "text": "任务" },
   ]
   private scroll: Scroller = new Scroller()

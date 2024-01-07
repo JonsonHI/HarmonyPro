@@ -6,6 +6,7 @@
     "pages/FindPage/FindPage",
     "pages/HotPage/HotPage",
     "pages/MinePage/MinePage",
-    "pages/FindPage/topic/CommitPage/CommitPage"
+    "pages/FindPage/topic/CommitPage/CommitPage",
+    "pages/HotPage/RowPage"
   ]
 }
