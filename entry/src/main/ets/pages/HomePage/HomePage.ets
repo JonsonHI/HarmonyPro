@@ -5,6 +5,7 @@ import web_view from '@ohos.web.webview'
 import { FloorConfig } from '../../Component/Floor/FloorConfig'
 import { SecondFloor } from '../../Component/Floor/SecondFloor'
 import { RefreshController, RefreshLayout } from '@app/refresh'
+import { preferences } from '../../entryability/EntryAbility'
 
 type ImageArray = {
   image: string
@@ -54,6 +55,12 @@ export struct HomePage {
   rightButton() {
     Row() {
       Button('数字').margin(2)
+        .onClick(()=>{
+          preferences.put('token','测试这个',function(err){
+            console.info('err!!!!!!!!',err)
+          })
+          preferences.flush()
+        })
       Button('点击').margin(2)
     }
     .height('50vp')

@@ -1,5 +1,6 @@
 import http from '@ohos.net.http'
 import systemDateTime from '@ohos.systemDateTime'
+import hilog from '@ohos.hilog'
 import { ResponseResult } from './ResponseResult'
 
 enum RequestMethod {
@@ -18,7 +19,6 @@ export class HttpUtils {
   public static readonly READ_TIME_OUT = 60 * 1000
   public static readonly CONNECT_TIME_OUT = 60 * 1000
   private baseUrl: string = ""
-
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl
   }
@@ -88,6 +88,8 @@ export class HttpUtils {
     console.debug(this.tag(n), "method: " + method.toString())
     if (reqMethod == RequestMethod.POST || reqMethod == RequestMethod.PUT)
       console.debug(this.tag(n), "extraData: " + JSON.stringify(parameter, null, 2))
+
+    // console.debug('token~~~~~~:方法内',this.token)
 
     return new Promise(async (resolve, reject) => {
       // let beginTime = await systemDateTime.getCurrentTime(false)

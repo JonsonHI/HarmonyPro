@@ -25,6 +25,10 @@ export struct GrideListView{
               router.pushUrl({
                 url:'pages/HotPage/RowPage'
               })
+            }else if(index === 1){
+              router.pushUrl({
+                url:'pages/HotPage/ColumPage'
+              })
             }
           })
         })

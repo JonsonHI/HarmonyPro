@@ -7,6 +7,7 @@
     "pages/HotPage/HotPage",
     "pages/MinePage/MinePage",
     "pages/FindPage/topic/CommitPage/CommitPage",
-    "pages/HotPage/RowPage"
+    "pages/HotPage/RowPage",
+    "pages/HotPage/ColumPage"
   ]
 }
