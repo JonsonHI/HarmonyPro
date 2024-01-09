@@ -13,6 +13,7 @@
         "name": "ohos.permission.INTERNET"
       }
     ],
+
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

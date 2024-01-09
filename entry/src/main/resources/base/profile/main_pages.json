@@ -9,5 +9,8 @@
     "pages/FindPage/topic/CommitPage/CommitPage",
     "pages/HotPage/RowPage",
     "pages/HotPage/ColumPage"
-  ]
+  ],
+  "window": {
+    "designWidth": 1440
+  }
 }
