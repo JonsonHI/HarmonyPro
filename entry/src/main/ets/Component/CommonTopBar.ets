@@ -16,7 +16,7 @@ export struct CommonTopBar {
   private onBackClick?: () => void
 
   aboutToAppear() {
-    this.setSystemStatusBar()
+    // this.setSystemStatusBar()
   }
 
   setSystemStatusBar() {
@@ -126,7 +126,7 @@ export struct CommonTopBar {
         }
       }
       .height('50vp')
-      .width('20%')
+      .width('30%')
       Row() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
           Text(this.title)
@@ -142,13 +142,13 @@ export struct CommonTopBar {
         .alignSelf(ItemAlign.End)
       }
       .height('50vp')
-      .width('60%')
+      .width('40%')
      if(this.rtButton){
        Row() {
          this.rightButton()
        }
        .height('50vp')
-       .width('20%')
+       .width('30%')
      }
     }
     .backgroundColor('red')

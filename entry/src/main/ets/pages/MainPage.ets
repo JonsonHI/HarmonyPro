@@ -4,7 +4,6 @@ import { HotPage } from './HotPage/HotPage'
 import { MinePage } from './MinePage/MinePage'
 import { TabItem } from '../Model/TabItem'
 import MainPageModel from '../ViewModel/MainPageModel'
-import display from '@ohos.display'
 
 @Entry
 @Component

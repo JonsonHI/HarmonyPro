@@ -20,3 +20,8 @@ export  class Taks {
   // }
 
 }
+
+export type testArray = {
+  type:number
+  name:number
+}

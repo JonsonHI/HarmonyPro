@@ -2,6 +2,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import data_preferences from '@ohos.data.preferences';
+import {RootStore} from '../stores/RootStore';
+import { HomeStore } from '../stores/HomeStore';
 export var preferences: data_preferences.Preferences = null;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -17,6 +19,8 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     try {
+      AppStorage.SetOrCreate('store', new HomeStore())
+
       data_preferences.getPreferences(this.context, 'myStore', function (err, val) {
         if (err) {
           console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);

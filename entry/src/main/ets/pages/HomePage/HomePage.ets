@@ -6,6 +6,9 @@ import { FloorConfig } from '../../Component/Floor/FloorConfig'
 import { SecondFloor } from '../../Component/Floor/SecondFloor'
 import { RefreshController, RefreshLayout } from '@app/refresh'
 import { preferences } from '../../entryability/EntryAbility'
+import { testArray } from '../../ViewModel/ColumModel'
+import { RootStore } from '../../stores/RootStore'
+import { HomeStore } from '../../stores/HomeStore'
 
 type ImageArray = {
   image: string
@@ -15,9 +18,10 @@ type dataList = {
   url: string,
 }
 
+
 @Entry
 @Component
-export struct HomePage {
+ export  struct HomePage {
   @State message: string = 'Hello World'
   private swiper: SwiperController = new SwiperController()
   private webView = new web_view.WebviewController()
@@ -35,6 +39,10 @@ export struct HomePage {
     },
   ]
 
+  @StorageLink('count') count:number = 0
+  @StorageLink('testArray') testArray:Array<testArray> = [{'type':1,'name':2}]
+  @StorageLink('store') store:HomeStore = new HomeStore()
+
   aboutToAppear() {
 
     this.mFloorConfig.setExpandFloorTriggerDistance(150)
@@ -49,6 +57,8 @@ export struct HomePage {
       console.log('data:', JSON.stringify(data))
       this.upList = data.data
     })
+
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~store:',JSON.stringify(this.store.list))
   }
 
   @Builder
@@ -95,16 +105,46 @@ export struct HomePage {
           }, (item) => JSON.stringify(item))
         }
 
-        List() {
-          ForEach(this.upList, (item) => {
-            ListItem() {
-              Column() {
-                Text(item.title)
-                Web({ src: item.url, controller: this.webView }).height('200vp')
-              }
-            }
+        Text('测试全局状态')
+          .fontSize(18)
+          .margin({top:20})
+        Button(`${this.count}`)
+          .width(50)
+          .height(50)
+          .onClick(()=>{
+            this.count++
+            PersistentStorage.PersistProp('count',this.count)
           })
-        }
+     Text('测试全局状态数组对象')
+          .fontSize(18)
+          .margin({top:20})
+          .width('100%')
+        Button(`${this.store.list}`)
+          .width('100%')
+          .height(50)
+          .onClick(()=>{
+            // this.testArray.push({'type':2,"name":3})
+            // this.testArray[0].name = 55
+            // let temp = AppStorage.Set('testArray',AppStorage.Get('testArray'))
+            // // let temp = AppStorage.Get('testArray')
+            // console.log('~~~~~~~~~temp',JSON.stringify(temp))
+            // this.store.name = "测试名字2"
+            let obj = JSON.parse(this.store.list)
+            this.store.list= obj
+            AppStorage.Set('store',AppStorage.Get('store'))
+          })
+
+
+        // List() {
+        //   ForEach(this.upList, (item) => {
+        //     ListItem() {
+        //       Column() {
+        //         Text(item.title)
+        //         Web({ src: item.url, controller: this.webView }).height('200vp')
+        //       }
+        //     }
+        //   })
+        // }
       }
     }
     .height('100%')
