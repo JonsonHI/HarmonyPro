@@ -5,6 +5,7 @@ import { showToast } from '../../../utils/ToatUtils'
 export struct GrideListView{
   @Link imageArray:Array<object>
 
+
   build(){
     Row(){
       Grid(){
@@ -29,6 +30,7 @@ export struct GrideListView{
               router.pushUrl({
                 url:'pages/HotPage/ColumPage'
               })
+
             }
           })
         })

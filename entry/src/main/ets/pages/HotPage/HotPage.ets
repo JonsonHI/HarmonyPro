@@ -25,6 +25,14 @@ export struct HotPage {
     this.viewState = ViewStateConstant.VIEW_STATE_SUCCESS
   }
 
+  // pageTransition() {
+  //   // PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
+  //   //   .slide(SlideEffect.Bottom)
+  //
+  //   PageTransitionExit({ duration: 500, curve: Curve.Ease,type:RouteType.Push })
+  //     .slide(SlideEffect.Bottom)
+  // }
+
   build() {
     Column() {
       CommonStateView({ viewState: this.viewState }) {

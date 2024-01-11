@@ -1,7 +1,7 @@
 export class HomeStore {
 
   name:string = '测试名字'
-  list:string = JSON.stringify([{name:1,age:2}])
+  list:string
 
 }
 
