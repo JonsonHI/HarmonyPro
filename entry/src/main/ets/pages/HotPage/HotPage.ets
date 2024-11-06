@@ -13,7 +13,7 @@ export struct HotPage {
     { "name": $r('app.media.phone'), "text": "Row" },
     { "name": $r('app.media.commper'), "text": "Colum" },
     { "name": $r('app.media.watch'), "text": "Stack" },
-    { "name": $r('app.media.plan'), "text": "Flex" },
+    { "name": $r('app.media.watch'), "text": "Flex" },
     { "name": $r('app.media.reacter'), "text": "任务" },
   ]
   private scroll: Scroller = new Scroller()
@@ -39,7 +39,7 @@ export struct HotPage {
         // Scroll(this.scroll) {
         Row() {
           Image($r('app.media.location')).width('30vp').height('30vp').margin(10)
-          TextInput({ placeholder: '请输入' })
+          TextInput({ placeholder: '请输入1' })
             .layoutWeight(1)
             .backgroundColor('white')
           Image($r('app.media.shop')).width('30vp').height('30vp').margin(10)

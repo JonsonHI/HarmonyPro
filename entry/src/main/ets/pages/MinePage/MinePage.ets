@@ -24,7 +24,6 @@ export struct MinePage {
     Row() {
       Text(classifyName).textAlign(TextAlign.Center).width('100%').height('60vp')
         .backgroundColor('white')
-
     }
   }
 
@@ -39,6 +38,7 @@ export struct MinePage {
           // showToast('测四')
         })
       Text(item.price.toString())
+        .margin({left:'10vp'})
 
 
     }
